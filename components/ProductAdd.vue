@@ -7,36 +7,63 @@
                     <label>Наименование товара</label>
                     <div class='rectangle'></div>
                 </div>
-                <input class="custom-input__input" type="text" placeholder="Введите наименование товара" />
+                <input class="custom-input__input" type="text" placeholder="Введите наименование товара"
+                    v-model="name" />
             </div>
             <div class="custom-input">
                 <div class="custom-input__label">
                     <label>Описание товара</label>
                 </div>
-                <textarea class="custom-input__input" placeholder="Введите описание товара"></textarea>
+                <textarea class="custom-input__input" placeholder="Введите описание товара"
+                    v-model="description"></textarea>
             </div>
             <div class="custom-input">
                 <div class="custom-input__label">
                     <label>Ссылка на изображения товара</label>
                     <div class='rectangle'></div>
                 </div>
-                <input class="custom-input__input" type="text" placeholder="Введите ссылку" />
+                <input class="custom-input__input" type="text" placeholder="Введите ссылку" v-model="imageUrl" />
             </div>
             <div class="custom-input">
                 <div class="custom-input__label">
                     <label>Цена товара</label>
                     <div class='rectangle'></div>
                 </div>
-                <input class="custom-input__input" type="text" placeholder="Введите цену" />
+                <input class="custom-input__input" type="text" placeholder="Введите цену" v-model="price" />
             </div>
-            <button class="custom-button">Добавить товар</button>
+            <button class="custom-button" @click="addProduct" :disabled="!isValid"
+                :class="{ 'custom-button_disabled': !isValid }">Добавить товар</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'ProductAdd'
+    name: 'ProductAdd',
+    data() {
+        return {
+            name: '',
+            description: '',
+            price: '',
+            imageUrl: '',
+        }
+    },
+    computed: {
+        isValid() {
+            return this.name && this.price && this.imageUrl;
+        },
+    },
+    methods: {
+        addProduct() {
+            if (this.isValid) {
+                this.$store.dispatch('addProduct', { name: this.name, description: this.description, price: this.price, iamgeUrl: this.imageUrl });
+                this.name = '';
+                this.price = '';
+                this.description = '';
+                this.imageUrl = '';
+            }
+        },
+    },
 }
 </script>
 
@@ -94,7 +121,6 @@ $space_for_add: 24px;
 }
 
 .custom-button {
-    // background: #EEEEEE;
     color: #FFFFFF;
     background: #7BAE73;
     height: 36px;
@@ -102,6 +128,11 @@ $space_for_add: 24px;
     font-size: 12px;
     border: unset;
     border-radius: 10px;
+
+    &_disabled {
+        color: #B4B4B4;
+        background: #EEEEEE;
+    }
 }
 
 .rectangle {
