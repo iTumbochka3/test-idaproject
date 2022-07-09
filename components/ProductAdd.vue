@@ -7,8 +7,11 @@
                     <label>Наименование товара</label>
                     <div class='rectangle'></div>
                 </div>
-                <input class="custom-input__input" type="text" placeholder="Введите наименование товара"
-                    v-model="name" />
+                <div class="custom-input__div">
+                    <input class="custom-input__input" type="text" placeholder="Введите наименование товара"
+                        v-model="name" :class="{ 'custom-input__input_error': !isValidName }" />
+                    <span class="custom-input__help-text" v-if="!isValidName">Поле является обязательным</span>
+                </div>
             </div>
             <div class="custom-input">
                 <div class="custom-input__label">
@@ -22,17 +25,27 @@
                     <label>Ссылка на изображения товара</label>
                     <div class='rectangle'></div>
                 </div>
-                <input class="custom-input__input" type="text" placeholder="Введите ссылку" v-model="imageUrl" />
+                <div class="custom-input__div">
+                    <input class="custom-input__input" type="text" placeholder="Введите ссылку" v-model="imageUrl"
+                        :class="{ 'custom-input__input_error': !isValidHttpUrl }" />
+                    <span class="custom-input__help-text" v-if="!isValidHttpUrl">Поле является обязательным</span>
+                </div>
+
             </div>
             <div class="custom-input">
                 <div class="custom-input__label">
                     <label>Цена товара</label>
                     <div class='rectangle'></div>
                 </div>
-                <input class="custom-input__input" type="text" placeholder="Введите цену" v-model="price" />
+                <div class="custom-input__div">
+                    <input class="custom-input__input" type="number" placeholder="Введите цену" v-model="price"
+                    :class="{ 'custom-input__input_error': !isValidPrice }" />
+                    <span class="custom-input__help-text" v-if="!isValidPrice">Поле является обязательным</span>
+                </div>
+                
             </div>
-            <button class="custom-button" @click="addProduct" :disabled="!isValid"
-                :class="{ 'custom-button_disabled': !isValid }">Добавить товар</button>
+            <button class="custom-button" @click="addProduct" :disabled="!isValidForm"
+                :class="{ 'custom-button_disabled': !isValidForm }">Добавить товар</button>
         </div>
     </div>
 </template>
@@ -49,13 +62,28 @@ export default {
         }
     },
     computed: {
-        isValid() {
-            return this.name && this.price && this.imageUrl;
+        isValidForm() {
+            return this.isValidName && this.isValidPrice && this.isValidHttpUrl;
+        },
+        isValidName() {
+            return this.name;
+        },
+        isValidPrice() {
+            return this.price && this.price !== '0';
+        },
+        isValidHttpUrl() {
+            let url;
+            try {
+                url = new URL(this.imageUrl);
+            } catch (error) {
+                return false;
+            }
+            return this.imageUrl && (url.protocol === "http:" || url.protocol === "https:");
         },
     },
     methods: {
         addProduct() {
-            if (this.isValid) {
+            if (this.isValidForm) {
                 this.$store.dispatch('addProduct', { name: this.name, description: this.description, price: this.price, iamgeUrl: this.imageUrl });
                 this.name = '';
                 this.price = '';
@@ -97,7 +125,7 @@ $space_for_add: 24px;
 .custom-input {
     display: flex;
     flex-direction: column;
-    margin-bottom: $space_for_add;
+    margin-bottom: 16px;
     font-size: 10px;
 
     &__title {
@@ -108,15 +136,33 @@ $space_for_add: 24px;
         display: flex;
     }
 
+    &__div {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+    }
+
     &__input {
         background: #FFFEFB;
         border: unset;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
         font-size: 12px;
-        margin: 4px 0;
+        margin-top: 4px;
         padding: 10px 16px;
         resize: none;
+
+        &_error {
+            border: 1px solid #FF8484;
+        }
+    }
+
+    &__help-text {
+        position: absolute;
+        bottom: -14px;
+        color: #FF8484;
+        font-weight: 400;
+        font-size: 8px;
     }
 }
 
