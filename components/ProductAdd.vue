@@ -108,10 +108,12 @@ export default {
 
 <style scoped lang="scss">
 @import '../assets/default_variables.scss';
+@import '../assets/custom-button.scss';
+@import '../assets/custom-input.scss';
 .product-add {
     display: flex;
     flex-direction: column;
-    margin-right: 16px;
+    margin-right: $space-m;
 
     @media (min-width: 0) and (max-width: 768px) {
         width: $width-mobile;
@@ -122,11 +124,10 @@ export default {
     }
 
     &__title {
-        margin: 0;
+        margin: 0 0 $space-m 0;
         font-size: $font-xxxl;
         font-weight: $font-weight-b;
         color: $color-1;
-        margin-bottom: 16px;
     }
 
     &__form {
@@ -135,80 +136,7 @@ export default {
         padding: $space-l;
         background: $color-5;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
-        border-radius: 4px;
+        border-radius: $border-radius;
     }
-}
-
-.custom-input {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: $space-m;
-    font-size: $font-s;
-
-    &__title {
-        color: $color-2;
-    }
-
-    &__label {
-        display: flex;
-    }
-
-    &__div {
-        display: flex;
-        position: relative;
-        flex-direction: column;
-    }
-
-    &__input {
-        background: $color-5;
-        border: unset;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
-        font-size: $font-m;
-        margin-top: $space-xs;
-        padding: $space-s $space-m;
-        resize: none;
-
-        &_error {
-            border: 1px solid $color-3;
-        }
-    }
-
-    &__help-text {
-        position: absolute;
-        bottom: -14px;
-        color: $color-3;
-        font-weight: $font-weight;
-        font-size: $font-xs;
-    }
-}
-
-.custom-button {
-    color: $color-7;
-    background: $color-8;
-    height: $height-default;
-    width: $width-mobile;
-    font-size: $font-m;
-    border: unset;
-    border-radius: 10px;
-
-    &_disabled {
-        color: $color-4;
-        background: $color-6;
-    }
-}
-
-.rectangle {
-    width: 4px;
-    height: 4px;
-    border-radius: 4px;
-    background: $color-3;
-}
-
-::placeholder {
-    font-family: 'Source Sans Pro', normal;
-    font-weight: $font-weight;
-    font-size: $font-m;
-    color: $color-4;
 }
 </style>

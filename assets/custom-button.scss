@@ -1,0 +1,15 @@
+@import '/assets/default_variables.scss';
+.custom-button {
+    color: $color-7;
+    background: $color-8;
+    height: $height-default;
+    width: $width-mobile;
+    font-size: $font-m;
+    border: unset;
+    border-radius: 10px;
+
+    &_disabled {
+        color: $color-4;
+        background: $color-6;
+    }
+}

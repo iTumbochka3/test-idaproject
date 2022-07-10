@@ -45,7 +45,7 @@ export default {
     margin: 0 $space-m $space-m 0;
     background: $color-5;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
-    border-radius: 4px;
+    border-radius: $border-radius;
     color: $color-1;
 
     @media (min-width: 0) and (max-width: 768px) {
@@ -65,7 +65,7 @@ export default {
 
     &__image {
         align-self: center;
-        border-radius: 4px 4px 0px 0px;
+        border-radius: $border-radius $border-radius 0px 0px;
         width: inherit;
     }
 

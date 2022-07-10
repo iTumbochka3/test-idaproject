@@ -61,7 +61,7 @@ export default {
         background: $color-5;
         border: unset;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
+        border-radius: $border-radius;
         margin-top: $space-xs;
         padding-left: $space-m;
         height: $height-default;
