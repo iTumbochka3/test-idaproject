@@ -38,11 +38,12 @@
                     <div class='rectangle'></div>
                 </div>
                 <div class="custom-input__div">
-                    <input class="custom-input__input" type="number" placeholder="Введите цену" v-model="price"
-                    :class="{ 'custom-input__input_error': !isValidPrice }" />
+                    <input type="text" class="custom-input__input"
+                        :class="{ 'custom-input__input_error': !isValidPrice }" placeholder="Введите цену"
+                        :value="priceText" @input="changePrice" />
                     <span class="custom-input__help-text" v-if="!isValidPrice">Поле является обязательным</span>
                 </div>
-                
+
             </div>
             <button class="custom-button" @click="addProduct" :disabled="!isValidForm"
                 :class="{ 'custom-button_disabled': !isValidForm }">Добавить товар</button>
@@ -57,7 +58,8 @@ export default {
         return {
             name: '',
             description: '',
-            price: '',
+            priceText: '',
+            price: 0,
             imageUrl: '',
         }
     },
@@ -81,6 +83,11 @@ export default {
             return this.imageUrl && (url.protocol === "http:" || url.protocol === "https:");
         },
     },
+    watch: {
+        priceText(value) {
+            this.price = +value.replace(/\s/g, '');
+        }
+    },
     methods: {
         addProduct() {
             if (this.isValidForm) {
@@ -90,6 +97,10 @@ export default {
                 this.description = '';
                 this.imageUrl = '';
             }
+        },
+        changePrice(event) {
+            const newString = event.target.value.replace(/\s/g, '');
+            this.priceText = newString.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         },
     },
 }

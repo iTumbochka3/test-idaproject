@@ -6,7 +6,7 @@
         <div class="product-item__content">
             <div class="product-item__name">{{ product.name }}</div>
             <div class="product-item__description">{{ product.description }}</div>
-            <div class="product-item__price">{{ product.price | money }} руб.</div>
+            <div class="product-item__price">{{ product.price | currency }} руб.</div>
         </div>
     </div>
 </template>
@@ -21,11 +21,11 @@ export default {
         }
     },
     filters: {
-        money: function (value) {
+        currency: function (value) {
             if (!value || value.length < 3) {
                 return value;
             }
-            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");;
+            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         }
     },
     methods: {
