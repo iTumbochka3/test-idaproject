@@ -93,6 +93,7 @@ export default {
             if (this.isValidForm) {
                 this.$store.dispatch('addProduct', { name: this.name, description: this.description, price: this.price, iamgeUrl: this.imageUrl });
                 this.name = '';
+                this.priceText = '';
                 this.price = '';
                 this.description = '';
                 this.imageUrl = '';
