@@ -12,6 +12,9 @@ import ProductList from '../components/ProductList.vue';
 export default {
   name: "IndexPage",
   components: { ProductAdd, ProductList },
+  mounted() {
+    this.$store.dispatch('getDataFromLocalStorage');
+  },
 }
 </script>
 

@@ -1,16 +1,10 @@
 export const state = () => ({
-    products: [
-        { id: 1, name: 'Наименование товара', description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк', price: 10000, imageUrl: '' },
-        { id: 2, name: 'Наименование товара', description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк', price: 10000, imageUrl: '' },
-        { id: 3, name: 'Наименование товара', description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк', price: 10000, imageUrl: '' },
-        { id: 4, name: 'Наименование товара', description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк', price: 10000, imageUrl: '' },
-        { id: 5, name: 'Наименование товара', description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк', price: 10000, imageUrl: '' },
-    ],
+    products: [],
 })
 
 export const getters = {
     getProducts(state) {
-        return state.products
+        return state.products;
     },
 }
 
@@ -18,17 +12,30 @@ export const mutations = {
     ADD(state, product) {
         state.products.push(product);
     },
-    REMOVE(state, id) {
-        state.products = state.products.filter((item) => item.id !== id);
+    SET(state, products) {
+        state.products = products;
     },
 }
 
 export const actions = {
-    addProduct({ commit }, product) {
+    addProduct({ state, commit }, product) {
         commit('ADD', { id: Date.now(), name: product.name, description: product.description, price: product.price, imageUrl: product.imageUrl });
+        if (process.client) {
+            localStorage.setItem('products', JSON.stringify(state.products));
+        }
     },
 
-    removeProduct({ commit }, id) {
-        commit('REMOVE', id);
+    removeProduct({ state, commit }, id) {
+        const newArray = state.products.filter((item) => item.id !== id);
+        commit('SET', newArray);
+        if (process.client) {
+            localStorage.setItem('products', JSON.stringify(state.products));
+        }
+    },
+
+    getDataFromLocalStorage({ commit }) {
+        if (process.client) {
+            commit('SET', JSON.parse(localStorage.getItem('products') || '[]'));
+        }
     },
 }

@@ -1,5 +1,6 @@
 <template>
     <div class="product-item">
+        <img class="product-item__delete" src="../static/delete2.png" @click="removeProduct" />
         <img v-if="product.imageUrl" class="product-item__image" :src="product.imageUrl" />
         <img v-else class="product-item__image" src="../static/default.png" />
         <div class="product-item__content">
@@ -27,6 +28,11 @@ export default {
             return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");;
         }
     },
+    methods: {
+        removeProduct() {
+            this.$store.dispatch('removeProduct', this.product.id);
+        },
+    },
 }
 </script>
 
@@ -34,12 +40,20 @@ export default {
 .product-item {
     width: 332px;
     display: flex;
+    position: relative;
     flex-direction: column;
     margin: 0 16px 16px 0;
     background: #FFFEFB;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
     color: #3F3F3F;
+
+    &__delete {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        visibility: hidden;
+    }
 
     &__image {
         border-radius: 4px 4px 0px 0px;
@@ -72,7 +86,9 @@ export default {
     cursor: url("../static/hover.png"),
     auto;
 
-    :hover {}
+    :hover>&__delete {
+        visibility: visible;
+    }
 
     :focus {}
 
