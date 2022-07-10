@@ -121,6 +121,7 @@ export default {
     }
 
     @media (min-width: 769px) {
+        flex-shrink: 0;
         width: $width-desktop;
     }
 

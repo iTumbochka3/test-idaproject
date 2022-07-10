@@ -5,7 +5,6 @@
       <SorterToolbar />
       <ProductList />
     </div>
-
   </div>
 </template>
 
@@ -36,6 +35,5 @@ export default {
   @media (min-width: 769px) {
     flex-direction: row;
   }
-
 }
 </style>
