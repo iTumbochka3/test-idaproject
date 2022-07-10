@@ -36,35 +36,36 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../assets/default_variables.scss';
 .sorter-toolbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 16px;
+    margin-bottom: $space-m;
 
     @media (min-width: 0) and (max-width: 768px) {
         flex-direction: column;
-        margin-top: 16px;
+        margin-top: $space-m;
     }
 
     @media (min-width: 769px) {
         flex-direction: row;
 
         :first-child {
-            margin-right: 16px;
+            margin-right: $space-m;
         }
     }
 
     &__select {
         flex-grow: 1;
-        background: #FFFEFB;
+        background: $color-5;
         border: unset;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
-        margin-top: 4px;
-        padding-left: 16px;
-        height: 36px;
-        font-size: 12px;
+        margin-top: $space-xs;
+        padding-left: $space-m;
+        height: $height-default;
+        font-size: $font-m;
     }
 }
 </style>

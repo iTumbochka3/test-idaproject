@@ -37,22 +37,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../assets/default_variables.scss';
 .product-item {
     display: flex;
     position: relative;
     flex-direction: column;
-    margin: 0 16px 16px 0;
-    background: #FFFEFB;
+    margin: 0 $space-m $space-m 0;
+    background: $color-5;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
-    color: #3F3F3F;
+    color: $color-1;
 
     @media (min-width: 0) and (max-width: 768px) {
-        width: 100%;
+        width: $width-mobile;
     }
 
     @media (min-width: 769px) {
-        width: 332px;
+        width: $width-desktop;
     }
 
     &__delete {
@@ -71,24 +72,24 @@ export default {
     &__content {
         display: flex;
         flex-direction: column;
-        margin: 16px 16px 24px 16px;
+        margin: $space-m $space-m $space-l $space-m;
     }
 
     &__name {
-        margin-bottom: 16px;
-        font-size: 20px;
-        font-weight: 600;
+        margin-bottom: $space-m;
+        font-size: $font-xl;
+        font-weight: $font-weight-b;
     }
 
     &__description {
-        margin-bottom: 32px;
-        font-size: 16px;
-        font-weight: 400;
+        margin-bottom: $space-xl;
+        font-size: $font-l;
+        font-weight: $font-weight;
     }
 
     &__price {
-        font-weight: 600;
-        font-size: 24px;
+        font-weight: $font-weight-b;
+        font-size: $font-xxl;
     }
 
     cursor: url("../static/hover.png"),

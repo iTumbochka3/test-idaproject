@@ -107,34 +107,33 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$space_for_add: 24px;
-
+@import '../assets/default_variables.scss';
 .product-add {
     display: flex;
     flex-direction: column;
     margin-right: 16px;
 
     @media (min-width: 0) and (max-width: 768px) {
-        width: 100%;
+        width: $width-mobile;
     }
 
     @media (min-width: 769px) {
-        width: 332px;
+        width: $width-desktop;
     }
 
     &__title {
         margin: 0;
-        font-size: 28px;
-        font-weight: 600;
-        color: #3F3F3F;
+        font-size: $font-xxxl;
+        font-weight: $font-weight-b;
+        color: $color-1;
         margin-bottom: 16px;
     }
 
     &__form {
         display: flex;
         flex-direction: column;
-        padding: $space_for_add;
-        background: #FFFEFB;
+        padding: $space-l;
+        background: $color-5;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
         border-radius: 4px;
     }
@@ -143,11 +142,11 @@ $space_for_add: 24px;
 .custom-input {
     display: flex;
     flex-direction: column;
-    margin-bottom: 16px;
-    font-size: 10px;
+    margin-bottom: $space-m;
+    font-size: $font-s;
 
     &__title {
-        color: #49485E;
+        color: $color-2;
     }
 
     &__label {
@@ -161,41 +160,41 @@ $space_for_add: 24px;
     }
 
     &__input {
-        background: #FFFEFB;
+        background: $color-5;
         border: unset;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
-        font-size: 12px;
-        margin-top: 4px;
-        padding: 10px 16px;
+        font-size: $font-m;
+        margin-top: $space-xs;
+        padding: $space-s $space-m;
         resize: none;
 
         &_error {
-            border: 1px solid #FF8484;
+            border: 1px solid $color-3;
         }
     }
 
     &__help-text {
         position: absolute;
         bottom: -14px;
-        color: #FF8484;
-        font-weight: 400;
-        font-size: 8px;
+        color: $color-3;
+        font-weight: $font-weight;
+        font-size: $font-xs;
     }
 }
 
 .custom-button {
-    color: #FFFFFF;
-    background: #7BAE73;
-    height: 36px;
-    width: 100%;
-    font-size: 12px;
+    color: $color-7;
+    background: $color-8;
+    height: $height-default;
+    width: $width-mobile;
+    font-size: $font-m;
     border: unset;
     border-radius: 10px;
 
     &_disabled {
-        color: #B4B4B4;
-        background: #EEEEEE;
+        color: $color-4;
+        background: $color-6;
     }
 }
 
@@ -203,13 +202,13 @@ $space_for_add: 24px;
     width: 4px;
     height: 4px;
     border-radius: 4px;
-    background: #FF8484;
+    background: $color-3;
 }
 
 ::placeholder {
     font-family: 'Source Sans Pro', normal;
-    font-weight: 400;
-    font-size: 12px;
-    color: #B4B4B4;
+    font-weight: $font-weight;
+    font-size: $font-m;
+    color: $color-4;
 }
 </style>

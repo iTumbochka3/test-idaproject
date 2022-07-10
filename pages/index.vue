@@ -24,9 +24,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../assets/default_variables.scss';
 .main-container {
   display: flex;
-  margin: 32px 24px;
+  margin: $space-xl $space-l;
 
   @media (min-width: 0) and (max-width: 768px) {
     flex-direction: column;
