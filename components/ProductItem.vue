@@ -38,7 +38,6 @@ export default {
 
 <style scoped lang="scss">
 .product-item {
-    width: 332px;
     display: flex;
     position: relative;
     flex-direction: column;
@@ -48,6 +47,14 @@ export default {
     border-radius: 4px;
     color: #3F3F3F;
 
+    @media (min-width: 0) and (max-width: 768px) {
+        width: 100%;
+    }
+
+    @media (min-width: 769px) {
+        width: 332px;
+    }
+
     &__delete {
         position: absolute;
         top: -10px;
@@ -56,8 +63,9 @@ export default {
     }
 
     &__image {
+        align-self: center;
         border-radius: 4px 4px 0px 0px;
-        width: 332px;
+        width: inherit;
     }
 
     &__content {

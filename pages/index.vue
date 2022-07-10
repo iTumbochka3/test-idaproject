@@ -26,7 +26,15 @@ export default {
 <style scoped lang="scss">
 .main-container {
   display: flex;
-  flex-direction: row;
   margin: 32px 24px;
+
+  @media (min-width: 0) and (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+  }
+
 }
 </style>

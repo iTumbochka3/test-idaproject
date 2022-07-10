@@ -48,5 +48,10 @@ export default {
 .product-list {
     display: flex;
     flex-flow: row wrap;
+
+    @media (min-width: 0) and (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 </style>

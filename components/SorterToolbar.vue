@@ -42,6 +42,19 @@ export default {
     justify-content: space-between;
     margin-bottom: 16px;
 
+    @media (min-width: 0) and (max-width: 768px) {
+        flex-direction: column;
+        margin-top: 16px;
+    }
+
+    @media (min-width: 769px) {
+        flex-direction: row;
+
+        :first-child {
+            margin-right: 16px;
+        }
+    }
+
     &__select {
         flex-grow: 1;
         background: #FFFEFB;
@@ -49,7 +62,6 @@ export default {
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
         margin-top: 4px;
-        margin-right: 16px;
         padding-left: 16px;
         height: 36px;
         font-size: 12px;

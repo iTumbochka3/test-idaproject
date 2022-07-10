@@ -114,6 +114,13 @@ $space_for_add: 24px;
     flex-direction: column;
     margin-right: 16px;
 
+    @media (min-width: 0) and (max-width: 768px) {
+        width: 100%;
+    }
+
+    @media (min-width: 769px) {
+        width: 332px;
+    }
 
     &__title {
         margin: 0;
@@ -181,7 +188,7 @@ $space_for_add: 24px;
     color: #FFFFFF;
     background: #7BAE73;
     height: 36px;
-    width: 284px;
+    width: 100%;
     font-size: 12px;
     border: unset;
     border-radius: 10px;
