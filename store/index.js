@@ -1,10 +1,18 @@
 export const state = () => ({
     products: [],
+    orderBy: 'name',
+    orderAsc: true,
 })
 
 export const getters = {
     getProducts(state) {
         return state.products;
+    },
+    getOrderBy(state) {
+        return state.orderBy;
+    },
+    getOrderAsc(state) {
+        return state.orderAsc;
     },
 }
 
@@ -14,6 +22,12 @@ export const mutations = {
     },
     SET(state, products) {
         state.products = products;
+    },
+    SET_ORDER_BY(state, value) {
+        state.orderBy = value;
+    },
+    SET_ORDER_ASC(state, value) {
+        state.orderAsc = value;
     },
 }
 
@@ -37,5 +51,13 @@ export const actions = {
         if (process.client) {
             commit('SET', JSON.parse(localStorage.getItem('products') || '[]'));
         }
+    },
+
+    setOrderBy({ commit }, value) {
+        commit('SET_ORDER_BY', value);
+    },
+
+    setOrderAsc({ commit }, value) {
+        commit('SET_ORDER_ASC', value);
     },
 }

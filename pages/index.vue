@@ -1,17 +1,22 @@
 <template>
   <div class="main-container">
     <ProductAdd />
-    <ProductList />
+    <div>
+      <SorterToolbar />
+      <ProductList />
+    </div>
+
   </div>
 </template>
 
 <script>
 import ProductAdd from '../components/ProductAdd.vue';
 import ProductList from '../components/ProductList.vue';
+import SorterToolbar from '../components/SorterToolbar.vue';
 
 export default {
   name: "IndexPage",
-  components: { ProductAdd, ProductList },
+  components: { ProductAdd, ProductList, SorterToolbar },
   mounted() {
     this.$store.dispatch('getDataFromLocalStorage');
   },
